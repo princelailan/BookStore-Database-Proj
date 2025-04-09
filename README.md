@@ -20,6 +20,7 @@ Despite facing some challenges due to limited access to my usual computer setup,
 - **README.md:**  
   This file provides an explanation of the project, details about the database schema, and step-by-step instructions on how to set up and test the database.
 
+ For more information: https://docs.google.com/document/d/1LrHW89zM8ebFLjzjkA41BQ5H5ognUlRw/edit?usp=drivesdk&ouid=109682943670040539169&rtpof=true&sd=true
 
 ## Database Structure
 
