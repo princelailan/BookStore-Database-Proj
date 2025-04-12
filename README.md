@@ -1,100 +1,77 @@
-BookStore Database Project
+# BookStore Database Project
 
-Overview
+## Overview
 
-Welcome to our BookStore Database Project! This project is part of our coursework for Database Design & Programming with SQL. It showcases the collaborative effort of our team in designing and implementing a fully normalized and secure MySQL database system to manage a bookstore’s operations efficiently.
+Welcome to our **BookStore Database Project**!  
+This project was developed as part of our coursework for *Database Design & Programming with SQL*. It showcases the design and implementation of a well-structured MySQL database system tailored to manage a bookstore’s data effectively and securely.
 
-The database handles essential components such as books, authors, publishers, customers, orders, shipping logistics, and user roles. Despite some challenges—including limited access to regular computer resources—we remained committed to producing a well-structured, functional, and secure system.
+Despite limited access to full computing resources during development, we ensured the database remains fully normalized, secure, and easy to maintain.
 
-Team Members
+## Team Members
 
-Joseph Onyango – jesuspromisesmedia@gmail.com
+- **Joseph Onyango** – [jesuspromisesmedia@gmail.com](mailto:jesuspromisesmedia@gmail.com)  
+- **Christine Kabuga** – [kabugachristine4@gmail.com](mailto:kabugachristine4@gmail.com)  
+- **Ednah Ochuoga** – [nyamusiednah9@gmail.com](mailto:nyamusiednah9@gmail.com)
 
-Christine Kabuga – kabugachristine4@gmail.com
+## Submission Date
 
-Ednah Ochuoga – nyamusiednah9@gmail.com
+**13/04/2025**
 
+## Project Contents
 
-Submission Date
+- **`bookstore.sql`**  
+  Contains all SQL commands required to create the BookStore database, including:
+  - Table definitions
+  - Primary and foreign keys
+  - Constraints
+  - User roles
+  - Security features
 
-13/04/2025
+- **`README.md`**  
+  This file. It explains the database design, its structure, and how to set it up and test it.
 
+> Full project documentation:  
+> [View on Google Docs](https://docs.google.com/document/d/1LrHW89zM8ebFLjzjkA41BQ5H5ognUlRw/edit?usp=drivesdk&ouid=109682943670040539169&rtpof=true&sd=true)
 
-Project Contents
+## Database Structure
 
-bookstore.sql:
-This SQL script contains all the commands needed to create the BookStore database, including table definitions, constraints, and user roles. It covers every step from initializing the database to configuring secure access and relationships.
+### Reference Tables
 
-README.md:
-A detailed guide explaining the purpose and structure of the project. It includes insights into the database schema and instructions for setting up and testing the database environment.
+- **`book_language`** – Languages in which books are available  
+- **`publisher`** – Publisher information  
+- **`author`** – Author details  
+- **`address_status`** – Address status (e.g., current, old)  
+- **`country`** – Country data for addresses  
+- **`shipping_method`** – Methods of shipping  
+- **`order_status`** – Stages in the order process
 
+### Core Tables
 
-For more information: Project Documentation
+- **`book`** – Detailed book information  
+- **`book_author`** – Many-to-many relationship between books and authors
 
-Database Structure
+### Customer & Address Management
 
-Reference Tables
+- **`customer`** – Customer contact details  
+- **`address`** – Address details  
+- **`customer_address`** – Mapping of customers to addresses with status
 
-book_language – Languages available for books.
+### Order-Related Tables
 
-publisher – Details of publishers.
+- **`cust_order`** – Customer orders  
+- **`order_line`** – Items within an order  
+- **`order_history`** – Tracks changes in order status over time
 
-author – Information on authors.
+### Security & User Management
 
-address_status – Status indicators for addresses (e.g., current, previous).
+We implemented two user roles for access control:
 
-country – Country data for addresses.
+- **`bookstore_read`** – Read-only user for viewing data  
+- **`bookstore_admin`** – Admin user with full privileges
 
-shipping_method – Options for shipping orders.
+## Setup Instructions
 
-order_status – Status stages for orders (e.g., pending, shipped, delivered).
-
-
-Core Tables
-
-book – Detailed book records.
-
-book_author – Many-to-many link between books and authors.
-
-
-Customer and Address Management
-
-customer – Customer contact information.
-
-address – Address records.
-
-customer_address – Mapping between customers and their addresses, including status.
-
-
-Order-Related Tables
-
-cust_order – Customer order records.
-
-order_line – Books included in each order.
-
-order_history – Log of order status changes.
-
-
-Security & User Management
-
-We also set up role-based access control with two user roles:
-
-bookstore_read – Read-only user with restricted data access.
-
-bookstore_admin – Full administrative access for database management.
-
-
-Setup Instructions
-
-1. Clone the Repository:
-
-git clone <your-repository-url>
-cd <repository-folder>
-
-
-2. Run the SQL Script:
-Use MySQL Workbench or the MySQL CLI to execute bookstore.sql.
-
-
-3. Review the README.md:
-Follow the step-by-step setup and testing instructions provided in the README file.
+1. **Clone the Repository**
+   ```bash
+   git clone <your-repository-url>
+   cd <repository-folder>
