@@ -1,7 +1,10 @@
 -- bookstore.sql
 -- BookStore Database Project
--- Author: Joseph Onyango
--- Email: jesuspromisesmedia@gmail.com
+-- Contributors:
+--   Joseph Onyango         | jesuspromisesmedia@gmail.com
+--   Christine Kabuga       | kabugachristine4@gmail.com
+--   Ednah Ochuoga          | nyamusiednah9@gmail.com
+--
 -- Submission Date: 13/04/2025
 -- Course: Database Design & Programming with SQL
 --
@@ -22,20 +25,17 @@ USE BookStore;
 -- These tables hold essential data to be referenced by the main tables.
 -- ====================================================
 
--- Table: book_language
 CREATE TABLE book_language (
     language_id INT AUTO_INCREMENT PRIMARY KEY,
     language_name VARCHAR(100) NOT NULL
 );
 
--- Table: publisher
 CREATE TABLE publisher (
     publisher_id INT AUTO_INCREMENT PRIMARY KEY,
     publisher_name VARCHAR(255) NOT NULL,
     publisher_address VARCHAR(255)
 );
 
--- Table: author
 CREATE TABLE author (
     author_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
@@ -43,26 +43,22 @@ CREATE TABLE author (
     bio TEXT
 );
 
--- Table: address_status
 CREATE TABLE address_status (
     address_status_id INT AUTO_INCREMENT PRIMARY KEY,
     status_description VARCHAR(50) NOT NULL
 );
 
--- Table: country
 CREATE TABLE country (
     country_id INT AUTO_INCREMENT PRIMARY KEY,
     country_name VARCHAR(100) NOT NULL
 );
 
--- Table: shipping_method
 CREATE TABLE shipping_method (
     shipping_method_id INT AUTO_INCREMENT PRIMARY KEY,
     method_name VARCHAR(100) NOT NULL,
     cost DECIMAL(10,2)
 );
 
--- Table: order_status
 CREATE TABLE order_status (
     order_status_id INT AUTO_INCREMENT PRIMARY KEY,
     status_name VARCHAR(50) NOT NULL
@@ -72,7 +68,6 @@ CREATE TABLE order_status (
 -- Step 3: Create Core Domain Tables
 -- ====================================================
 
--- Table: book
 CREATE TABLE book (
     book_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -84,8 +79,6 @@ CREATE TABLE book (
     CONSTRAINT fk_book_language FOREIGN KEY (language_id) REFERENCES book_language(language_id)
 );
 
--- Table: book_author
--- This table implements the many-to-many relationship between books and authors.
 CREATE TABLE book_author (
     book_id INT NOT NULL,
     author_id INT NOT NULL,
@@ -98,7 +91,6 @@ CREATE TABLE book_author (
 -- Step 4: Create Customer and Address Tables
 -- ====================================================
 
--- Table: customer
 CREATE TABLE customer (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
@@ -107,7 +99,6 @@ CREATE TABLE customer (
     phone VARCHAR(50)
 );
 
--- Table: address
 CREATE TABLE address (
     address_id INT AUTO_INCREMENT PRIMARY KEY,
     street VARCHAR(255) NOT NULL,
@@ -118,8 +109,6 @@ CREATE TABLE address (
     CONSTRAINT fk_address_country FOREIGN KEY (country_id) REFERENCES country(country_id)
 );
 
--- Table: customer_address
--- This table links customers to addresses and holds a status flag.
 CREATE TABLE customer_address (
     customer_address_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT NOT NULL,
@@ -134,7 +123,6 @@ CREATE TABLE customer_address (
 -- Step 5: Create Order-Related Tables
 -- ====================================================
 
--- Table: cust_order
 CREATE TABLE cust_order (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT NOT NULL,
@@ -146,8 +134,6 @@ CREATE TABLE cust_order (
     CONSTRAINT fk_order_status FOREIGN KEY (order_status_id) REFERENCES order_status(order_status_id)
 );
 
--- Table: order_line
--- This table lists books (items) within each order.
 CREATE TABLE order_line (
     order_line_id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
@@ -158,8 +144,6 @@ CREATE TABLE order_line (
     CONSTRAINT fk_orderline_book FOREIGN KEY (book_id) REFERENCES book(book_id)
 );
 
--- Table: order_history
--- Tracks the changes in order status over time.
 CREATE TABLE order_history (
     order_history_id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
@@ -174,15 +158,12 @@ CREATE TABLE order_history (
 -- Step 6: Set Up User Management (Security Example)
 -- ====================================================
 
--- Create a read-only user for secure database access.
 CREATE USER 'bookstore_read'@'localhost' IDENTIFIED BY 'password';
 GRANT SELECT ON BookStore.* TO 'bookstore_read'@'localhost';
 
--- Create an admin user with full privileges for management.
 CREATE USER 'bookstore_admin'@'localhost' IDENTIFIED BY 'adminpassword';
 GRANT ALL PRIVILEGES ON BookStore.* TO 'bookstore_admin'@'localhost';
 
--- Reload privileges to apply changes.
 FLUSH PRIVILEGES;
 
 -- End of bookstore.sql
